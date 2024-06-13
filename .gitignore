@@ -1,0 +1,4 @@
+.venv/
+driver/
+applied_jobs.csv
+config.json
