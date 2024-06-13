@@ -40,11 +40,17 @@ class EasyApplyLinkedin:
         options.add_experimental_option("detach", True)
         options.add_argument('--ignore-certificate-errors')
         options.add_argument('--allow-insecure-localhost')
+
         service = Service(self.driver_path)
         return webdriver.Chrome(service=service, options=options)
 
     def current_time(self):
         return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+    # def login_linkedin(self):
+    #     self.driver.get("https://www.linkedin.com/login")
+    #     WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.NAME, 'session_key'))).send_keys(self.email)
+    #     WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.NAME, 'session_password'))).send_keys(self.password + Keys.RETURN)
 
     def job_search(self, keyword):
         self.driver.get("https://www.linkedin.com/jobs/")
@@ -358,7 +364,8 @@ class EasyApplyLinkedin:
 
     def apply(self):
         past_time_seconds = 86400 # Variable for past time, currently set to past day
-
+        # self.login_linkedin()
+        # time.sleep(2)
         for keyword in self.keywords:
             print(f"{self.current_time()} - 🟩🟩🟩 Starting search for keyword: {keyword}")
             self.job_search(keyword)
